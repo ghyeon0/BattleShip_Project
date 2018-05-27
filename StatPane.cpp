@@ -5,6 +5,7 @@ StatPane::StatPane(int x, int y, int width, int height)
     :Pane(x, y, width, height)
 {
     mvwprintw(m_pWindow, 0, 3, "< STATUS >");
+    turn = 0;
 }
 
 StatPane::~StatPane(){
@@ -13,7 +14,7 @@ StatPane::~StatPane(){
 
 void StatPane::Draw(){
     wattron(m_pWindow, COLOR_PAIR(2));
-    mvwprintw(m_pWindow, 1, 2, "TURN : 0");
+    mvwprintw(m_pWindow, 1, 2, "TURN : %d", turn);
     mvwprintw(m_pWindow, 2, 2, "AIRCRAFT : AAAAA");
     mvwprintw(m_pWindow, 3, 2, "BATTLESHIP : BBBB");
     mvwprintw(m_pWindow, 4, 2, "CRUISER : CCC");
@@ -21,4 +22,9 @@ void StatPane::Draw(){
     wattroff(m_pWindow, COLOR_PAIR(2));
 
     wrefresh(m_pWindow);
+}
+
+void StatPane::turnPass(){
+    turn++;
+    Draw();
 }

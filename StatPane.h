@@ -9,6 +9,9 @@ class StatPane : public Pane{
         ~StatPane();
 
         virtual void Draw();
+        void turnPass();
+    protected:
+        int turn;
 };
 
 #endif
