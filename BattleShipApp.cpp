@@ -21,7 +21,8 @@ void BattleShipApp::Init(){
     init_pair(3, COLOR_YELLOW, COLOR_BLACK);
 
     m_pMap = new BattleShipMap();
-    m_pStatPane = new StatPane(30, 3, 30, 6);
+    m_playerMap = new Player();
+    m_pStatPane = new StatPane(30, 3, 30, 7);
     m_pInputPane = new InputPane(30, 15, 30, 4);
 }
 
@@ -35,6 +36,7 @@ void BattleShipApp::Render(){
     mvprintw(1, 1, "<< Battle Ship Game >>");
 
     m_pMap -> Draw();
+    m_playerMap -> Draw();
     m_pStatPane -> Draw();
     m_pInputPane -> Draw();
 

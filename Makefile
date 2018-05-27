@@ -6,7 +6,8 @@ SOURCES = Main.cpp \
 		BattleShipMap.cpp \
 		InputPane.cpp \
 		Pane.cpp \
-		StatPane.cpp
+		StatPane.cpp \
+		Player.cpp
 LDFLAGS = -lncursesw
 
 all:
