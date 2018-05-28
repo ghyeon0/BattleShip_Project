@@ -21,6 +21,8 @@ class BattleShipApp{
         void Init();
         void Render();
         void Destroy();
+        bool isFinished();
+        void gamePlay();
 
     protected:
         BattleShipMap* m_pMap;

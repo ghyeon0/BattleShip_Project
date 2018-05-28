@@ -13,6 +13,9 @@ class InputPane : public Pane{
         ~InputPane();
 
         virtual void Draw();
+        virtual void Draw(char a);
+        virtual void Draw(char a, char b);
+        virtual void Clear();
 };
 
 #endif
