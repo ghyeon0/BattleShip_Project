@@ -2,19 +2,22 @@
 #define _SHIP_H_
 
 #include <string>
+#include <ncurses.h>
 
 class Position{
-    private:
+    protected:
         int row;
         int col;
     public:
         Position(int _row, int _col);
         ~Position();
         Position getPosition();
+        int getRow();
+        int getCol();
 };
 
 class Ship{
-    private:
+    protected:
         int remain_HP;
         std::string name;
         Position *position;
@@ -29,6 +32,8 @@ class Ship{
         int getSize();
         bool getDirection();
         void setPosition(int row, int col);
+        bool isDestroyed();
+        void Draw(WINDOW* win);
 };
 
 #endif

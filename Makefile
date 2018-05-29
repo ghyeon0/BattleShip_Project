@@ -7,7 +7,12 @@ SOURCES = Main.cpp \
 		InputPane.cpp \
 		Pane.cpp \
 		StatPane.cpp \
-		Player.cpp
+		Player.cpp \
+		Ship.cpp \
+		Aircraft.cpp \
+		BattleShip.cpp \
+		Cruiser.cpp \
+		Destroyer.cpp
 LDFLAGS = -lncursesw
 
 all:
