@@ -13,7 +13,7 @@ class BattleShipMap : public Pane{
     public:
         BattleShipMap();
         ~BattleShipMap();
-
+        void update(int row, int col, bool direction);
         void Draw();
     
     protected:

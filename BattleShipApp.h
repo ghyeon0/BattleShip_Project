@@ -5,6 +5,10 @@
 #ifndef _BATTLESHIPAPP_H_
 #define _BATTLESHIPAPP_H_
 
+#include "Aircraft.h"
+#include "BattleShip.h"
+#include "Cruiser.h"
+#include "Destroyer.h"
 #include "Player.h"
 #include "BattleShipMap.h"
 #include "StatPane.h"
@@ -23,12 +27,19 @@ class BattleShipApp{
         void Destroy();
         bool isFinished();
         void gamePlay();
+        void arrangeShips();
+        bool isSafe(int x, int y, bool direction);
 
     protected:
         BattleShipMap* m_pMap;
         Player* m_playerMap;
         StatPane* m_pStatPane;
         InputPane* m_pInputPane;
+        Aircraft* aircraft;
+        BattleShip* battleship;
+        Cruiser* cruiser;
+        Destroyer* destroyer_one;
+        Destroyer* destroyer_two;
 };
 
 #endif

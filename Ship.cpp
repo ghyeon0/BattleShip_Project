@@ -77,8 +77,9 @@ void Ship::Draw(WINDOW* win){
         }
     }else{
         for(int i = 0;i < this -> getSize();++i){
-            mvwprintw(win, row + 1, i + col, "%c", this -> name[0]);
+            mvwprintw(win, row + 1, i + col + 2, "%c", this -> name[0]);
         }
     }
     wattroff(win, COLOR_PAIR(4));
+    wrefresh(win);
 }

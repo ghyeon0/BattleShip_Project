@@ -1,6 +1,9 @@
 #include "BattleShipApp.h"
-
 #include <ncurses.h>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
 
 BattleShipApp::BattleShipApp(){
 
@@ -21,15 +24,35 @@ void BattleShipApp::Init(){
     init_pair(1, COLOR_GREEN, COLOR_BLACK);
     init_pair(2, COLOR_CYAN, COLOR_BLACK);
     init_pair(3, COLOR_YELLOW, COLOR_BLACK);
+    init_pair(4, COLOR_WHITE, COLOR_RED);
 
     m_pMap = new BattleShipMap();
     m_playerMap = new Player();
-    m_pStatPane = new StatPane(30, 3, 30, 7);
-    m_pInputPane = new InputPane(30, 15, 30, 4);
+    m_pStatPane = new StatPane(30, 5, 30, 7);
+    m_pInputPane = new InputPane(30, 17, 30, 4);
+    
+}
+
+void BattleShipApp::arrangeShips(){
+    srand((unsigned int)time(NULL));
+    //Aircraft
+    bool dir = rand() % 2;
+    int a = rand() % 4;
+    int b = rand() % 7;
+    if (dir){
+        aircraft = new Aircraft(b, a, dir);
+    }else{
+        aircraft = new Aircraft(a, b, dir);
+    }
+}
+
+bool BattleShipApp::isSafe(int x, int y, bool direction){
+    return true;
 }
 
 void BattleShipApp::Play(){
     Init();
+    arrangeShips();
     Render();
     gamePlay();
     Destroy();
@@ -41,10 +64,10 @@ void BattleShipApp::Render(){
     m_pMap -> Draw();
     m_playerMap -> Draw();
     m_pStatPane -> Draw();
-    
-
-    refresh();
     m_pInputPane -> Draw();
+    
+    refresh();
+    aircraft -> Draw(m_pMap -> getWindow());
 }
 
 bool BattleShipApp::isFinished(){

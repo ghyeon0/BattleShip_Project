@@ -13,6 +13,8 @@ class Pane{
         virtual ~Pane();
 
         virtual void Draw();
+
+        WINDOW* getWindow();
     
     protected:
         int m_width, m_height;

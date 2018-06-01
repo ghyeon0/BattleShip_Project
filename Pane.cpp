@@ -17,3 +17,7 @@ void Pane::Draw(){
     box(m_pWindow, 0, 0);
     wrefresh(m_pWindow);
 }
+
+WINDOW* Pane::getWindow(){
+    return m_pWindow;
+}
