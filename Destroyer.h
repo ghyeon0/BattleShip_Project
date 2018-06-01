@@ -7,6 +7,7 @@ class Destroyer : public Ship{
     public:
         Destroyer(int _row, int _col, bool _direction);
         ~Destroyer();
+        void Draw(WINDOW *win);
 };
 
 #endif

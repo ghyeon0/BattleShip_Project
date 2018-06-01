@@ -25,6 +25,9 @@ void BattleShipApp::Init(){
     init_pair(2, COLOR_CYAN, COLOR_BLACK);
     init_pair(3, COLOR_YELLOW, COLOR_BLACK);
     init_pair(4, COLOR_WHITE, COLOR_RED);
+    init_pair(5, COLOR_WHITE, COLOR_YELLOW);
+    init_pair(6, COLOR_WHITE, COLOR_MAGENTA);
+    init_pair(7, COLOR_WHITE, COLOR_CYAN);
 
     m_pMap = new BattleShipMap();
     m_playerMap = new Player();

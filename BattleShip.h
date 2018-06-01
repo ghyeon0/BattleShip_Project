@@ -7,6 +7,7 @@ class BattleShip : public Ship{
     public:
         BattleShip(int _row, int _col, bool _direction);
         ~BattleShip();
+        void Draw(WINDOW *win);
 };
 
 #endif

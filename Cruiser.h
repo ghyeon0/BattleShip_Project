@@ -7,6 +7,7 @@ class Cruiser : public Ship{
     public:
         Cruiser(int _row, int _col, bool _direction);
         ~Cruiser();
+        void Draw(WINDOW *win);
 };
 
 #endif

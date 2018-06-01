@@ -33,7 +33,7 @@ class Ship{
         bool getDirection();
         void setPosition(int row, int col);
         bool isDestroyed();
-        void Draw(WINDOW* win);
+        virtual void Draw(WINDOW* win);
 };
 
 #endif
