@@ -26,7 +26,11 @@ void BattleShipMap::Draw(){
     wattron(m_pWindow, COLOR_PAIR(1));
     for(int i = 0;i < MAP_SIZE;++i){
         for(int j = 0;j < MAP_SIZE;++j){
-            mvwprintw(m_pWindow, i + 1, j + 2, "-");
+            if (m_mapData[i][j] == '0')
+                mvwprintw(m_pWindow, i + 1, j + 2, "-");
+            else{
+                mvwprintw(m_pWindow, i + 1, j + 2, "%c", m_mapData[i][j]);
+            }
         }
     }
     wattroff(m_pWindow, COLOR_PAIR(1));
@@ -57,4 +61,17 @@ bool BattleShipMap::isSafe(int a, int b, bool dir, int size){
         }
     }
     return true;
+}
+
+char BattleShipMap::getData(int row, int col){
+    return m_mapData[row][col];
+}
+
+std::string BattleShipMap::attack(int row, int col){
+    if (m_mapData[row][col] == '0'){
+        return "miss";
+    }
+    else{
+        return "hit";
+    }
 }

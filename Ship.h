@@ -34,6 +34,7 @@ class Ship{
         void setPosition(int row, int col);
         bool isDestroyed();
         virtual void Draw(WINDOW* win);
+        void attacked();
 };
 
 #endif

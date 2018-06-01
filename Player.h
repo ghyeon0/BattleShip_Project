@@ -5,6 +5,7 @@
 #ifndef _PLAYER_H_
 #define _PLAYER_H_
 
+#include <string>
 #include "Pane.h"
 
 #define MAP_SIZE 8
@@ -15,6 +16,8 @@ class Player : public Pane{
         ~Player();
 
         void Draw();
+        void update(int row, int col, char data);
+        std::string attack(int row, int col);
     
     protected:
         char m_mapData[MAP_SIZE][MAP_SIZE];

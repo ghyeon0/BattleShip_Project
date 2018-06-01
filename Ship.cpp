@@ -25,7 +25,7 @@ int Position::getCol(){
 }
 
 Ship::Ship(int hp, std::string _name, int _row, int _col, int _size, bool _direction){
-    remain_HP = 0;
+    remain_HP = _size;
     name = _name;
     position = new Position(_row, _col);
     size = _size;
@@ -62,9 +62,13 @@ void Ship::setPosition(int _row, int _col){
 }
 
 bool Ship::isDestroyed(){
-    return remain_HP == 0;
+    return remain_HP <= 0;
 }
 
 void Ship::Draw(WINDOW* win){
 
+}
+
+void Ship::attacked(){
+    remain_HP -= 1;
 }

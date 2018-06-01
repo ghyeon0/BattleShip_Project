@@ -5,6 +5,7 @@
 #ifndef _INPUTPANE_H_
 #define _INPUTPANE_H_
 
+#include <string>
 #include "Pane.h"
 
 class InputPane : public Pane{
@@ -14,7 +15,7 @@ class InputPane : public Pane{
 
         virtual void Draw();
         virtual void Draw(char a);
-        virtual void Draw(char a, char b);
+        virtual void Draw(char a, char b, std::string data);
         virtual void Clear();
 };
 
