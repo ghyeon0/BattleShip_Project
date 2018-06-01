@@ -15,6 +15,7 @@ class BattleShipMap : public Pane{
         ~BattleShipMap();
         void update(int row, int col, bool direction, int size, char name);
         void Draw();
+        bool isSafe(int a, int b, bool direction, int size);
     
     protected:
         char m_mapData[MAP_SIZE][MAP_SIZE];

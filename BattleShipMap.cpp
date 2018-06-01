@@ -37,11 +37,24 @@ void BattleShipMap::Draw(){
 void BattleShipMap::update(int row, int col, bool direction, int size, char name){
     if (direction){
         for(int i = 0;i < size;i++){
-            m_mapData[row][col + 1] = name;
+            m_mapData[row][col + i] = name;
         }
     }else{
         for(int i = 0;i < size;i++){
             m_mapData[row + i][col] = name;
         }
     }
+}
+
+bool BattleShipMap::isSafe(int a, int b, bool dir, int size){
+    if (dir){
+        for(int i = 0;i < size;i++){
+            if (m_mapData[a][b + i] != '0') return false;
+        }
+    }else{
+        for(int i = 0;i < size;i++){
+            if (m_mapData[a + i][b] != '0') return false;
+        }
+    }
+    return true;
 }

@@ -13,7 +13,7 @@ SOURCES = Main.cpp \
 		BattleShip.cpp \
 		Cruiser.cpp \
 		Destroyer.cpp
-LDFLAGS = -lncursesw
+LDFLAGS = -lncurses
 
 all:
 	$(CC) $(CFLAGS) -o $(TARGET) $(SOURCES) $(LDFLAGS)

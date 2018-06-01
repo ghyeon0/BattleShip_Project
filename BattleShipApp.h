@@ -28,7 +28,7 @@ class BattleShipApp{
         bool isFinished();
         void gamePlay();
         void arrangeShips();
-        bool isSafe(int x, int y, bool direction);
+        bool isSafe(int x, int y, bool direction, int size);
 
     protected:
         BattleShipMap* m_pMap;

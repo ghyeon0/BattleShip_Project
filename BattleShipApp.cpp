@@ -46,10 +46,87 @@ void BattleShipApp::arrangeShips(){
         aircraft = new Aircraft(a, b, dir);
         m_pMap -> update(a, b, dir, 5, 'A');
     }
+    //Battleship
+    while (1){
+        dir = rand() % 2;
+        a = rand() % 4;
+        b = rand() % 7;
+        if (dir){
+            if (isSafe(b, a, dir, 4)){
+                battleship = new BattleShip(b, a, dir);
+                m_pMap -> update(b, a, dir, 4, 'B');
+                break;
+            }
+        }else{
+            if (isSafe(a, b, dir, 4)){
+                battleship = new BattleShip(a, b, dir);
+                m_pMap -> update(a, b, dir, 4, 'B');
+                break;
+            }
+        }
+    }
+    //Cruiser
+    while (1){
+        dir = rand() % 2;
+        a = rand() % 4;
+        b = rand() % 7;
+        if (dir){
+            if (isSafe(b, a, dir, 3)){
+                cruiser = new Cruiser(b, a, dir);
+                m_pMap -> update(b, a, dir, 3, 'C');
+                break;
+            }
+        }else{
+            if (isSafe(a, b, dir, 3)){
+                cruiser = new Cruiser(a, b, dir);
+                m_pMap -> update(a, b, dir, 3, 'C');
+                break;
+            }
+        }
+    }
+    //Destroyer_one
+    while (1){
+        dir = rand() % 2;
+        a = rand() % 4;
+        b = rand() % 7;
+        if (dir){
+            if (isSafe(b, a, dir, 2)){
+                destroyer_one = new Destroyer(b, a, dir);
+                m_pMap -> update(b, a, dir, 2, 'D');
+                break;
+            }
+        }else{
+            if (isSafe(a, b, dir, 2)){
+                destroyer_one = new Destroyer(a, b, dir);
+                m_pMap -> update(a, b, dir, 2, 'D');
+                break;
+            }
+        }
+    }
+    //Destroyer_two
+    while (1){
+        dir = rand() % 2;
+        a = rand() % 4;
+        b = rand() % 7;
+        if (dir){
+            if (isSafe(b, a, dir, 2)){
+                destroyer_two = new Destroyer(b, a, dir);
+                m_pMap -> update(b, a, dir, 2, 'D');
+                break;
+            }
+        }else{
+            if (isSafe(a, b, dir, 2)){
+                destroyer_two = new Destroyer(a, b, dir);
+                m_pMap -> update(a, b, dir, 2, 'D');
+                break;
+            }
+        }
+    }
 }
 
-bool BattleShipApp::isSafe(int x, int y, bool direction){
-    return true;
+bool BattleShipApp::isSafe(int x, int y, bool direction, int size){
+    if (m_pMap -> isSafe(x, y, direction, size)) return true;
+    else return false;
 }
 
 void BattleShipApp::Play(){
@@ -70,6 +147,10 @@ void BattleShipApp::Render(){
     
     refresh();
     aircraft -> Draw(m_pMap -> getWindow());
+    battleship -> Draw(m_pMap -> getWindow());
+    cruiser -> Draw(m_pMap -> getWindow());
+    destroyer_one -> Draw(m_pMap -> getWindow());
+    destroyer_two -> Draw(m_pMap -> getWindow());
 }
 
 bool BattleShipApp::isFinished(){
