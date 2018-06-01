@@ -41,8 +41,10 @@ void BattleShipApp::arrangeShips(){
     int b = rand() % 7;
     if (dir){
         aircraft = new Aircraft(b, a, dir);
+        m_pMap -> update(b, a, dir, 5, 'A');
     }else{
         aircraft = new Aircraft(a, b, dir);
+        m_pMap -> update(a, b, dir, 5, 'A');
     }
 }
 

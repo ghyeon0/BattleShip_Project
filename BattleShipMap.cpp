@@ -33,3 +33,15 @@ void BattleShipMap::Draw(){
 
     wrefresh(m_pWindow);
 }
+
+void BattleShipMap::update(int row, int col, bool direction, int size, char name){
+    if (direction){
+        for(int i = 0;i < size;i++){
+            m_mapData[row][col + 1] = name;
+        }
+    }else{
+        for(int i = 0;i < size;i++){
+            m_mapData[row + i][col] = name;
+        }
+    }
+}
