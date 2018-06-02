@@ -12,7 +12,7 @@ class StatPane : public Pane{
         StatPane(int x, int y, int width, int height);
         ~StatPane();
 
-        virtual void Draw();
+        void Draw(bool aircraft, bool battleship, bool cruiser, bool destroyer);
         void turnPass();
     protected:
         int turn;

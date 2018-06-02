@@ -28,6 +28,7 @@ void BattleShipApp::Init(){
     init_pair(5, COLOR_WHITE, COLOR_YELLOW);
     init_pair(6, COLOR_WHITE, COLOR_MAGENTA);
     init_pair(7, COLOR_WHITE, COLOR_CYAN);
+    init_pair(8, COLOR_RED, COLOR_BLACK);
 
     m_pMap = new BattleShipMap();
     m_playerMap = new Player();
@@ -145,7 +146,7 @@ void BattleShipApp::Render(){
 
     m_pMap -> Draw();
     m_playerMap -> Draw();
-    m_pStatPane -> Draw();
+    m_pStatPane -> Draw(0, 0, 0, 0);
     m_pInputPane -> Draw();
     
     refresh();
@@ -284,6 +285,7 @@ void BattleShipApp::gamePlay(){
         if (destroyer_two -> isDestroyed()){
             destroyer_two -> Draw(m_playerMap -> getWindow());
         }
+        m_pStatPane -> Draw(aircraft -> isDestroyed(), battleship -> isDestroyed(), cruiser -> isDestroyed(), destroyer_one -> isDestroyed() && destroyer_two -> isDestroyed());
     }
     m_pInputPane -> Draw();
     m_pInputPane -> Draw(' ', ' ', "Game Finished!");
