@@ -291,11 +291,12 @@ void BattleShipApp::gamePlay(){
         m_pStatPane -> Draw(aircraft -> isDestroyed(), battleship -> isDestroyed(), 
         cruiser -> isDestroyed(), destroyer_one -> isDestroyed() && destroyer_two -> isDestroyed());
     }
-    m_pInputPane -> Draw();
-    m_pInputPane -> Draw('G', 'G', "Good Game!");
 }
 
 void BattleShipApp::Destroy(){
+    getch();
+    m_pInputPane -> Draw();
+    m_pInputPane -> Draw('G', 'G', "Good Game!");
     getch();
     endwin();
     delete m_pMap;
