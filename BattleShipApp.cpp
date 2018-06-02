@@ -110,8 +110,8 @@ void BattleShipApp::arrangeShips(){
     //Destroyer_two
     while (1){
         dir = rand() % 2;
-        a = rand() % 4;
-        b = rand() % 7;
+        a = rand() % 7;
+        b = rand() % 8;
         if (dir){
             if (isSafe(b, a, dir, 2)){
                 destroyer_two = new Destroyer(b, a, dir);
