@@ -173,8 +173,11 @@ void BattleShipApp::gamePlay(){
                 row = temp;
                 break;
             }
+            if (int(temp) >= 97 && int(temp) <= 104){
+                row = temp - 32;
+                break;
+            }
         }
-        m_pInputPane -> Clear();
         m_pInputPane -> Draw();
         m_pInputPane -> Draw(row);
         while(1){
@@ -289,7 +292,7 @@ void BattleShipApp::gamePlay(){
         cruiser -> isDestroyed(), destroyer_one -> isDestroyed() && destroyer_two -> isDestroyed());
     }
     m_pInputPane -> Draw();
-    m_pInputPane -> Draw(' ', ' ', "Game Finished!");
+    m_pInputPane -> Draw('G', 'G', "Good Game!");
 }
 
 void BattleShipApp::Destroy(){

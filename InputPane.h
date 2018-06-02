@@ -13,10 +13,9 @@ class InputPane : public Pane{
         InputPane(int x, int y, int width, int height);
         ~InputPane();
 
-        virtual void Draw();
-        virtual void Draw(char a);
-        virtual void Draw(char a, char b, std::string data);
-        virtual void Clear();
+        void Draw();
+        void Draw(char a);
+        void Draw(char a, char b, std::string data);
 };
 
 #endif
