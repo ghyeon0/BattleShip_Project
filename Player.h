@@ -18,6 +18,7 @@ class Player : public Pane{
         void Draw();
         void update(int row, int col, char data);
         std::string attack(int row, int col);
+        char getData(int row, int col);
     
     protected:
         char m_mapData[MAP_SIZE][MAP_SIZE];

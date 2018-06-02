@@ -54,3 +54,7 @@ std::string Player::attack(int row, int col){
     }
 }
 
+char Player::getData(int row, int col){
+    return m_mapData[row][col];
+}
+
