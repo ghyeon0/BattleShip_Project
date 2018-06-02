@@ -256,21 +256,6 @@ void BattleShipApp::gamePlay(){
                         }
                         break;
                 }
-                if (aircraft -> isDestroyed()){
-                    aircraft -> Draw(m_playerMap -> getWindow());
-                }
-                if (battleship -> isDestroyed()){
-                    battleship -> Draw(m_playerMap -> getWindow());
-                }
-                if (cruiser -> isDestroyed()){
-                    cruiser -> Draw(m_playerMap -> getWindow());
-                }
-                if (destroyer_one -> isDestroyed()){
-                    destroyer_one -> Draw(m_playerMap -> getWindow());
-                }
-                if (destroyer_two -> isDestroyed()){
-                    destroyer_two -> Draw(m_playerMap -> getWindow());
-                }
             }else{
                 m_pInputPane -> Draw(row, col, "try-again");
             }
@@ -281,23 +266,23 @@ void BattleShipApp::gamePlay(){
             }else{
                 m_pStatPane -> turnPass();
                 m_playerMap -> update((int)row - 65, (int)col - 49, 'M');
-                if (aircraft -> isDestroyed()){
-                    aircraft -> Draw(m_playerMap -> getWindow());
-                }
-                if (battleship -> isDestroyed()){
-                    battleship -> Draw(m_playerMap -> getWindow());
-                }
-                if (cruiser -> isDestroyed()){
-                    cruiser -> Draw(m_playerMap -> getWindow());
-                }
-                if (destroyer_one -> isDestroyed()){
-                    destroyer_one -> Draw(m_playerMap -> getWindow());
-                }
-                if (destroyer_two -> isDestroyed()){
-                    destroyer_two -> Draw(m_playerMap -> getWindow());
-                }
                 m_pInputPane -> Draw(row, col, s);
             }
+        }
+        if (aircraft -> isDestroyed()){
+            aircraft -> Draw(m_playerMap -> getWindow());
+        }
+        if (battleship -> isDestroyed()){
+            battleship -> Draw(m_playerMap -> getWindow());
+        }
+        if (cruiser -> isDestroyed()){
+            cruiser -> Draw(m_playerMap -> getWindow());
+        }
+        if (destroyer_one -> isDestroyed()){
+            destroyer_one -> Draw(m_playerMap -> getWindow());
+        }
+        if (destroyer_two -> isDestroyed()){
+            destroyer_two -> Draw(m_playerMap -> getWindow());
         }
     }
     m_pInputPane -> Draw();
