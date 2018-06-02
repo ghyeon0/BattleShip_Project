@@ -1,3 +1,7 @@
+//C++ BattleShip Project
+//20171701 정지현
+//작성일자 2018/05/28
+
 #ifndef _SHIP_H_
 #define _SHIP_H_
 

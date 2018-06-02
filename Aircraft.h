@@ -1,3 +1,7 @@
+//C++ BattleShip Project
+//20171701 정지현
+//작성일자 2018/05/29
+
 #ifndef _AIRCRAFT_H_
 #define _AIRCRAFT_H_
 
