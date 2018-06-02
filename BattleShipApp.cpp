@@ -285,7 +285,8 @@ void BattleShipApp::gamePlay(){
         if (destroyer_two -> isDestroyed()){
             destroyer_two -> Draw(m_playerMap -> getWindow());
         }
-        m_pStatPane -> Draw(aircraft -> isDestroyed(), battleship -> isDestroyed(), cruiser -> isDestroyed(), destroyer_one -> isDestroyed() && destroyer_two -> isDestroyed());
+        m_pStatPane -> Draw(aircraft -> isDestroyed(), battleship -> isDestroyed(), 
+        cruiser -> isDestroyed(), destroyer_one -> isDestroyed() && destroyer_two -> isDestroyed());
     }
     m_pInputPane -> Draw();
     m_pInputPane -> Draw(' ', ' ', "Game Finished!");
