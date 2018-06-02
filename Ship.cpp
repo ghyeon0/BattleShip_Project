@@ -62,7 +62,7 @@ void Ship::setPosition(int _row, int _col){
 }
 
 bool Ship::isDestroyed(){
-    return remain_HP <= 0;
+    return remain_HP == 0;
 }
 
 void Ship::Draw(WINDOW* win){

@@ -41,7 +41,7 @@ void BattleShipApp::arrangeShips(){
     //Aircraft
     bool dir = rand() % 2;
     int a = rand() % 4;
-    int b = rand() % 7;
+    int b = rand() % 8;
     if (dir){
         aircraft = new Aircraft(b, a, dir);
         m_pMap -> update(b, a, dir, 5, 'A');
@@ -52,8 +52,8 @@ void BattleShipApp::arrangeShips(){
     //Battleship
     while (1){
         dir = rand() % 2;
-        a = rand() % 4;
-        b = rand() % 7;
+        a = rand() % 5;
+        b = rand() % 8;
         if (dir){
             if (isSafe(b, a, dir, 4)){
                 battleship = new BattleShip(b, a, dir);
@@ -71,8 +71,8 @@ void BattleShipApp::arrangeShips(){
     //Cruiser
     while (1){
         dir = rand() % 2;
-        a = rand() % 4;
-        b = rand() % 7;
+        a = rand() % 6;
+        b = rand() % 8;
         if (dir){
             if (isSafe(b, a, dir, 3)){
                 cruiser = new Cruiser(b, a, dir);
@@ -90,8 +90,8 @@ void BattleShipApp::arrangeShips(){
     //Destroyer_one
     while (1){
         dir = rand() % 2;
-        a = rand() % 4;
-        b = rand() % 7;
+        a = rand() % 7;
+        b = rand() % 8;
         if (dir){
             if (isSafe(b, a, dir, 2)){
                 destroyer_one = new Destroyer(b, a, dir);
@@ -165,104 +165,82 @@ bool BattleShipApp::isFinished(){
 
 void BattleShipApp::gamePlay(){
     while (!isFinished()){
-        char row = getch();
-        if ((int)row >= 65 && (int)row <= 72){
-            m_pInputPane -> Clear();
-            m_pInputPane -> Draw();
-            m_pInputPane -> Draw(row);
-            char col = getch();
-            if (int(col) >= 49 && (int)col <= 56){
-                
-            }else{
-                while (1){
-                    char temp = getch();
-                    if (int(temp) >= 49 && (int)temp <= 56){
-                        row = temp;
+        char row, col;
+        while (1){
+            char temp = getch();
+            if (int(temp) >= 65 && int(temp) <= 72){
+                row = temp;
+                break;
+            }
+        }
+        m_pInputPane -> Clear();
+        m_pInputPane -> Draw();
+        m_pInputPane -> Draw(row);
+        while(1){
+            char temp = getch();
+            if (int(temp) >= 49 && int(temp) <= 56){
+                col = temp;
+                break;
+            }
+        }
+        std::string s = m_pMap -> attack((int)row - 65, (int)col - 49);
+        if (s == "hit"){
+            std::string p = m_playerMap -> attack((int)row - 65, (int)col - 49);
+            if (p == "hit"){
+                char c = m_pMap -> getData((int)row - 65, (int)col - 49);
+                char temp;
+                switch (c){
+                    case 'A':
+                        aircraft -> attacked();
+                        if (aircraft -> isDestroyed()){
+                            aircraft -> Draw(m_playerMap -> getWindow());
+                            m_pInputPane -> Draw(row, col, "Aircraft Destroyed");
+                        }else{
+                            m_playerMap -> update((int)row - 65, (int)col - 49, 'H');
+                            m_pInputPane -> Draw(row, col, s);
+                        }
                         break;
-                    }
+                    case 'B':
+                        battleship -> attacked();
+                        if (battleship -> isDestroyed()){
+                            battleship -> Draw(m_playerMap -> getWindow());
+                            m_pInputPane -> Draw(row, col, "BattleShip Destroyed");
+                        }else{
+                            m_playerMap -> update((int)row - 65, (int)col - 49, 'H');
+                            m_pInputPane -> Draw(row, col, s);
+                        }
+                        break;
+                    case 'C':
+                        cruiser -> attacked();
+                        if (cruiser -> isDestroyed()){
+                            cruiser -> Draw(m_playerMap -> getWindow());
+                            m_pInputPane -> Draw(row, col, "Cruiser Destroyed");
+                        }else{
+                            m_playerMap -> update((int)row - 65, (int)col - 49, 'H');
+                            m_pInputPane -> Draw(row, col, s);
+                        }
+                        break;
+                    case 'D':
+                        destroyer_one -> attacked();
+                        if (destroyer_one -> isDestroyed()){
+                            destroyer_one -> Draw(m_playerMap -> getWindow());
+                            m_pInputPane -> Draw(row, col, "Destroyer Destroyed");
+                        }else{
+                            m_playerMap -> update((int)row - 65, (int)col - 49, 'H');
+                            m_pInputPane -> Draw(row, col, s);
+                        }
+                        break;
+                    case 'E':
+                        destroyer_two -> attacked();
+                        if (destroyer_two -> isDestroyed()){
+                            destroyer_two -> Draw(m_playerMap -> getWindow());
+                            m_pInputPane -> Draw(row, col, "Destroyer Destroyed");
+                        }else{
+                            m_playerMap -> update((int)row - 65, (int)col - 49, 'H');
+                            m_pInputPane -> Draw(row, col, s);
+                        }
+                        break;
                 }
-            }
-            std::string s = m_pMap -> attack((int)row - 65, (int)col - 49);
-            if (s == "hit"){
-                std::string p = m_playerMap -> attack((int)row - 65, (int)col - 49);
-                if (p == "hit"){
-                    char c = m_pMap -> getData((int)row - 65, (int)col - 49);
-                    char temp;
-                    switch (c){
-                        case 'A':
-                            aircraft -> attacked();
-                            if (aircraft -> isDestroyed()){
-                                aircraft -> Draw(m_playerMap -> getWindow());
-                                m_pInputPane -> Draw(row, col, "Aircraft Destroyed");
-                            }else{
-                                m_playerMap -> update((int)row - 65, (int)col - 49, 'H');
-                                m_pInputPane -> Draw(row, col, s);
-                            }
-                            break;
-                        case 'B':
-                            battleship -> attacked();
-                            if (battleship -> isDestroyed()){
-                                battleship -> Draw(m_playerMap -> getWindow());
-                                m_pInputPane -> Draw(row, col, "BattleShip Destroyed");
-                            }else{
-                                m_playerMap -> update((int)row - 65, (int)col - 49, 'H');
-                                m_pInputPane -> Draw(row, col, s);
-                            }
-                            break;
-                        case 'C':
-                            cruiser -> attacked();
-                            if (cruiser -> isDestroyed()){
-                                cruiser -> Draw(m_playerMap -> getWindow());
-                                m_pInputPane -> Draw(row, col, "Cruiser Destroyed");
-                            }else{
-                                m_playerMap -> update((int)row - 65, (int)col - 49, 'H');
-                                m_pInputPane -> Draw(row, col, s);
-                            }
-                            break;
-                        case 'D':
-                            destroyer_one -> attacked();
-                            if (destroyer_one -> isDestroyed()){
-                                destroyer_one -> Draw(m_playerMap -> getWindow());
-                                m_pInputPane -> Draw(row, col, "Destroyer Destroyed");
-                            }else{
-                                m_playerMap -> update((int)row - 65, (int)col - 49, 'H');
-                                m_pInputPane -> Draw(row, col, s);
-                            }
-                            break;
-                        case 'E':
-                            destroyer_two -> attacked();
-                            if (destroyer_two -> isDestroyed()){
-                                destroyer_two -> Draw(m_playerMap -> getWindow());
-                                m_pInputPane -> Draw(row, col, "Destroyer Destroyed");
-                            }else{
-                                m_playerMap -> update((int)row - 65, (int)col - 49, 'H');
-                                m_pInputPane -> Draw(row, col, s);
-                            }
-                            break;
-                    }
-                    if (aircraft -> isDestroyed()){
-                        aircraft -> Draw(m_playerMap -> getWindow());
-                    }
-                    if (battleship -> isDestroyed()){
-                        battleship -> Draw(m_playerMap -> getWindow());
-                    }
-                    if (cruiser -> isDestroyed()){
-                        cruiser -> Draw(m_playerMap -> getWindow());
-                    }
-                    if (destroyer_one -> isDestroyed()){
-                        destroyer_one -> Draw(m_playerMap -> getWindow());
-                    }
-                    if (destroyer_two -> isDestroyed()){
-                        destroyer_two -> Draw(m_playerMap -> getWindow());
-                    }
-                    m_pStatPane -> turnPass();
-                }else{
-                    m_pInputPane -> Draw(row, col, "try-again");
-                }
-            }
-            else{
-                m_pStatPane -> turnPass();
-                m_playerMap -> update((int)row - 65, (int)col - 49, 'M');
                 if (aircraft -> isDestroyed()){
                     aircraft -> Draw(m_playerMap -> getWindow());
                 }
@@ -278,8 +256,30 @@ void BattleShipApp::gamePlay(){
                 if (destroyer_two -> isDestroyed()){
                     destroyer_two -> Draw(m_playerMap -> getWindow());
                 }
-                m_pInputPane -> Draw(row, col, s);
+                m_pStatPane -> turnPass();
+            }else{
+                m_pInputPane -> Draw(row, col, "try-again");
             }
+        }
+        else{
+            m_pStatPane -> turnPass();
+            m_playerMap -> update((int)row - 65, (int)col - 49, 'M');
+            if (aircraft -> isDestroyed()){
+                aircraft -> Draw(m_playerMap -> getWindow());
+            }
+            if (battleship -> isDestroyed()){
+                battleship -> Draw(m_playerMap -> getWindow());
+            }
+            if (cruiser -> isDestroyed()){
+                cruiser -> Draw(m_playerMap -> getWindow());
+            }
+            if (destroyer_one -> isDestroyed()){
+                destroyer_one -> Draw(m_playerMap -> getWindow());
+            }
+            if (destroyer_two -> isDestroyed()){
+                destroyer_two -> Draw(m_playerMap -> getWindow());
+            }
+            m_pInputPane -> Draw(row, col, s);
         }
     }
     m_pInputPane -> Draw();
