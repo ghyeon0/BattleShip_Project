@@ -12,10 +12,6 @@ Position::~Position(){
 
 }
 
-Position Position::getPosition(){
-    return *this;
-}
-
 int Position::getRow(){
     return row;
 }
@@ -41,7 +37,7 @@ std::string Ship::getName(){
 }
 
 Position Ship::getPosition(){
-    return position -> getPosition();
+    return *position;
 }
 
 int Ship::getRemainHP(){

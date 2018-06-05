@@ -15,7 +15,6 @@ class Position{
     public:
         Position(int _row, int _col);
         ~Position();
-        Position getPosition();
         int getRow();
         int getCol();
 };
