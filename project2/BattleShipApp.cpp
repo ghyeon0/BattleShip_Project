@@ -2,6 +2,7 @@
 #include <ncurses.h>
 #include <cstdlib>
 #include <ctime>
+#include <unistd.h>
 
 using namespace std;
 
@@ -165,28 +166,16 @@ bool BattleShipApp::isFinished(){
 
 
 void BattleShipApp::gamePlay(){
+    srand((unsigned int)time(NULL));
     while (!isFinished()){
         char row, col;
-        while (1){
-            char temp = getch();
-            if (int(temp) >= 65 && int(temp) <= 72){
-                row = temp;
-                break;
-            }
-            if (int(temp) >= 97 && int(temp) <= 104){
-                row = temp - 32;
-                break;
-            }
-        }
+        usleep(50000);
+        int temp = rand() % 8;
+        row = temp + 65;
         m_pInputPane -> Draw();
         m_pInputPane -> Draw(row);
-        while(1){
-            char temp = getch();
-            if (int(temp) >= 49 && int(temp) <= 56){
-                col = temp;
-                break;
-            }
-        }
+        temp = rand() % 8;
+        col = 49 + temp;
         std::string s = m_pMap -> attack((int)row - 65, (int)col - 49);
         if (s == "hit"){
             std::string p = m_playerMap -> attack((int)row - 65, (int)col - 49);
@@ -262,11 +251,13 @@ void BattleShipApp::gamePlay(){
                 }
             }else{
                 m_pInputPane -> Draw(row, col, "try-again");
+                m_pStatPane -> turnPass();
             }
         }
         else{
             if (m_playerMap -> getData(int(row) - 65, int(col) - 49) == 'M'){
                 m_pInputPane -> Draw(row, col, "try-again");
+                m_pStatPane -> turnPass();
             }else{
                 m_pStatPane -> turnPass();
                 m_playerMap -> update((int)row - 65, (int)col - 49, 'M');
