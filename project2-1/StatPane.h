@@ -14,6 +14,7 @@ class StatPane : public Pane{
 
         void Draw(bool aircraft, bool battleship, bool cruiser, bool destroyer);
         void turnPass();
+        int getTurn();
     protected:
         int turn;
 };

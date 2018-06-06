@@ -59,3 +59,7 @@ void StatPane::Draw(bool aircraft = 0, bool battleship = 0, bool cruiser = 0, bo
 void StatPane::turnPass(){
     turn++;
 }
+
+int StatPane::getTurn(){
+    return turn;
+}

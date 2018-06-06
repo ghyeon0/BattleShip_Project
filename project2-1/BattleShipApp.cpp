@@ -2,6 +2,7 @@
 #include <ncurses.h>
 #include <cstdlib>
 #include <ctime>
+#include <string>
 #include <unistd.h>
 
 using namespace std;
@@ -135,11 +136,21 @@ bool BattleShipApp::isSafe(int x, int y, bool direction, int size){
 }
 
 void BattleShipApp::Play(){
-    Init();
-    arrangeShips();
-    Render();
-    gamePlay();
-    Destroy();
+    int turn = 0;
+    for(int i = 0;i< 10;i++){
+        Init();
+        arrangeShips();
+        Render();
+        gamePlay();
+        turn += m_pStatPane -> getTurn();
+        usleep(1000000);
+        Destroy();
+    }
+    turn /= 10;
+    string temp = to_string(turn);
+    m_pInputPane -> Draw();
+    m_pInputPane -> Draw(' ', ' ', "Average Turn: " + temp);
+    getch();
 }
 
 void BattleShipApp::Render(){
@@ -167,15 +178,22 @@ bool BattleShipApp::isFinished(){
 
 void BattleShipApp::gamePlay(){
     srand((unsigned int)time(NULL));
+    bool check[8][8] = {{0, }};
     while (!isFinished()){
         char row, col;
-        usleep(50000);
-        int temp = rand() % 8;
-        row = temp + 65;
+        // usleep(50000);
+        while (1){
+            int temp = rand() % 8;
+            int temp_2 = rand() % 8;
+            if (check[temp][temp_2] == 0){
+                check[temp][temp_2] = 1;
+                row = temp + 65;
+                col = temp_2 + 49;
+                break;
+            }
+        }
         m_pInputPane -> Draw();
         m_pInputPane -> Draw(row);
-        temp = rand() % 8;
-        col = 49 + temp;
         std::string s = m_pMap -> attack((int)row - 65, (int)col - 49);
         if (s == "hit"){
             std::string p = m_playerMap -> attack((int)row - 65, (int)col - 49);
@@ -285,10 +303,10 @@ void BattleShipApp::gamePlay(){
 }
 
 void BattleShipApp::Destroy(){
-    getch();
-    m_pInputPane -> Draw();
-    m_pInputPane -> Draw('G', 'G', "Good Game!");
-    getch();
+    // getch();
+    // m_pInputPane -> Draw();
+    // m_pInputPane -> Draw('G', 'G', "Good Game!");
+    // getch();
     endwin();
     delete m_pMap;
 }
