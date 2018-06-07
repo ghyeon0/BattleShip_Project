@@ -5,7 +5,7 @@ StatPane::StatPane(int x, int y, int width, int height)
     :Pane(x, y, width, height)
 {
     mvwprintw(m_pWindow, 0, 3, "< STATUS >");
-    turn = 1;
+    turn = 0;
 }
 
 StatPane::~StatPane(){

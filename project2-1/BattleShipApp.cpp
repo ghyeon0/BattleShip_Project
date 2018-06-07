@@ -151,6 +151,7 @@ void BattleShipApp::Play(){
     m_pInputPane -> Draw();
     m_pInputPane -> Draw(' ', ' ', "Average Turn: " + temp);
     getch();
+    endwin();
 }
 
 void BattleShipApp::Render(){
