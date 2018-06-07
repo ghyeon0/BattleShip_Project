@@ -137,17 +137,31 @@ bool BattleShipApp::isSafe(int x, int y, bool direction, int size){
 
 void BattleShipApp::Play(){
     int turn = 0;
+    int min = 65;
+    int max = 0;
     for(int i = 0;i< 10;i++){
         Init();
         arrangeShips();
         Render();
         gamePlay();
+        if (m_pStatPane -> getTurn() < min){
+            min = m_pStatPane -> getTurn();
+        }
+        if (m_pStatPane -> getTurn() > max){
+            max = m_pStatPane -> getTurn();
+        }
         turn += m_pStatPane -> getTurn();
         usleep(1000000);
         Destroy();
     }
     turn /= 10;
     string temp = to_string(turn);
+    m_pInputPane -> Draw();
+    m_pInputPane -> Draw(' ', ' ', "Min Turn: " + to_string(min));
+    getch();
+    m_pInputPane -> Draw();
+    m_pInputPane -> Draw(' ', ' ', "Max Turn: " + to_string(max));
+    getch();
     m_pInputPane -> Draw();
     m_pInputPane -> Draw(' ', ' ', "Average Turn: " + temp);
     getch();
