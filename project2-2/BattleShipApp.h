@@ -28,6 +28,7 @@ class BattleShipApp{
         bool isFinished();
         void gamePlay();
         void arrangeShips();
+        std::string Attack(char row, char col);
         bool isSafe(int x, int y, bool direction, int size);
 
     protected:
